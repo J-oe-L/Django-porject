@@ -1,0 +1,33 @@
+h2
+{
+  font-family: "Zilla Slab", serif;
+  font-weight: 300;
+  font-style: italic;
+}
+.x
+{
+height:40px;
+width:100%;
+position:fixed;
+bottom:0;
+left:0;
+text-align:center;
+}
+
+.form-control
+{
+width:75%;
+}
+
+.table-bordered
+{
+border-color:black;
+border-width:3px;
+}
+
+h4
+{
+  font-family: "Zilla Slab", serif;
+  font-weight: 300;
+  font-style: italic;
+}

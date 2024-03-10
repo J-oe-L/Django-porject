@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row fs-5 text-center">
+        <h4 class="text-center">Shopping Cart</h4>
+
+
+        <div class="col-6 mt-4 me-5"><table class="table table-bordered">
+            <tr>
+                <th>Cart Items</th>
+            </tr>
+
+            {% for i in c %}
+        <tr><td>
+            <img src="{{i.product.image.url}}" height="150px" width="150px">
+            </td>
+            <td><h6><b>{{i.product.name}}</b></h6></td>
+            <td><h6>Product Id:{{i.product.id}}</h6>
+            <h6>Unit Price:{{i.product.price}}</h6>
+                <h6>Quantity:{{i.quantity}}*{{i.product.price}}</h6></td>
+                <td>Subtotal:{{i.subtotal}}</td>
+                <td>
+                    {% if i.product.stock > 0 %}
+
+                        <a href="{% url 'cart:addtocart' i.product.name %}"><i class="fa-solid fa-circle-plus text-danger fs-5"></i></a>
+                    <a href="{% url 'cart:cart_remove' i.product.name %}"><i class="fa-solid fa-circle-minus text-danger fs-5"></i></a>
+                    <a href="{% url 'cart:cart_delete' i.product.name %}"><i class="fa-solid fa-trash text-danger fs-5"></i></a>
+                  {% else %}
+
+
+                    <a href="{% url 'cart:cart_remove' i.product.name %}"><i class="fa-solid fa-circle-minus text-danger fs-5"></i></a>
+                    <a href="{% url 'cart:cart_delete' i.product.name %}"><i class="fa-solid fa-trash text-danger fs-5"></i></a>{% endif %}</td>
+        </tr>
+            {% endfor %}
+
+        </table></div>
+
+
+        <div class="col-5 mt-4">
+            <table class="table table-bordered">
+            <tr><th class="col-5">Check Out</th></tr>
+            <tr><td>Total Amount:{{total}}</td></tr>
+            <tr><td><a href="{% url 'cart:orderform' %}" class="btn btn-danger me-5">Place Order</a>
+                <a href="{% url 'shop:allcat' %}" class="btn btn-danger ms-5">Continue Shopping</a></td>
+            </tr>
+
+
+        </table></div>
+
+
+    </div>
+</div>
+
+{% endblock %}
